@@ -18,12 +18,12 @@
             <TextBlock x:Name="round" Margin="0,50,0,0" Text="Round" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBlock x:Name="roundCounter" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="48" FontWeight="Bold" Margin="147,0,147,0" HorizontalAlignment="Center"/>
 
-            <Canvas Height="170" Margin="212,20,212,0" HorizontalAlignment="Stretch" Width="600">
-                <Button x:Name="btnIncreaseTime" Content="+" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="BtnIncreaseTime_Click" FontFamily="Arial Black" Width="45" Height="45" Canvas.Left="50" Canvas.Top="65" FontSize="24" FontWeight="Bold">
+            <Canvas Height="170" Margin="212,20,212,0" HorizontalAlignment="Center" Width="700">
+                <Button x:Name="btnIncreaseTime" Content="+" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="BtnIncreaseTime_Click" FontFamily="Arial Black" Width="55" Height="55" Canvas.Left="20" Canvas.Top="60" FontSize="24" FontWeight="Bold">
                 </Button>
-                <TextBlock x:Name="timeLeft" Text="00:00" TextWrapping="Wrap" FontSize="150" FontWeight="Bold" FontFamily="Arial Black" Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Center" Height="150" Canvas.Left="108" Canvas.Top="10"/>
+                <TextBlock x:Name="timeLeft" Text="00:00" TextWrapping="Wrap" FontSize="200" FontWeight="Bold" FontFamily="Arial Black" Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="205" Canvas.Top="-19" Canvas.Left="93"/>
 
-                <Button x:Name="btnDecreaseTime" Content="-" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="BtnDecreaseTime_Click" Height="45" FontFamily="Arial Black" Width="45" Canvas.Left="510" Canvas.Top="65" FontSize="24" FontWeight="Bold">
+                <Button x:Name="btnDecreaseTime" Content="-" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="BtnDecreaseTime_Click" Height="55" FontFamily="Arial Black" Width="55" Canvas.Left="625" Canvas.Top="60" FontSize="24" FontWeight="Bold">
 
                 </Button>
             </Canvas>

@@ -33,6 +33,7 @@ namespace BorasGrappling2
         private int minutesDefault;
         private bool play = true;
         private float volume = 0.9f;
+        private int secondsRestDefault;
 
         public MainPage()
         {
@@ -75,7 +76,7 @@ namespace BorasGrappling2
                     var nextRound = 1 + Int32.Parse(roundCounter.Text);
                     roundCounter.Text = nextRound.ToString();
 
-                    secondsRestLeft = 30;
+                    secondsRestLeft = secondsRestDefault;
                     secondsLeft = secondsDefault;
                     minutesLeft = minutesDefault;
                     timeLeft.Text = FormatTime(minutesLeft, secondsLeft);
@@ -174,6 +175,7 @@ namespace BorasGrappling2
 
                 secondsDefault = secondsLeft;
                 minutesDefault = minutesLeft;
+                secondsRestDefault = secondsRestLeft;
                 timer.Start();
                 btnStart.Content = "PAUSE";
 
