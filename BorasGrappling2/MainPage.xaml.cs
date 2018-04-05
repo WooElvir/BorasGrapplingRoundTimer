@@ -261,7 +261,9 @@ namespace BorasGrappling2
             // IgnorableNamespaces="uap mp"
             // Shutdowns the device immediately:
 
-            //ShutdownManager.BeginShutdown(ShutdownKind.Shutdown, TimeSpan.FromSeconds(0));
+            // shutdown command: shutdown / s / t 0
+
+            ShutdownManager.BeginShutdown(ShutdownKind.Shutdown, TimeSpan.FromSeconds(0));
         }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)

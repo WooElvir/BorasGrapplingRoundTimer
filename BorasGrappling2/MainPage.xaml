@@ -27,7 +27,7 @@
 
                 </Button>
             </Canvas>
-            <Canvas Height="83" Margin="212,0,212,0" HorizontalAlignment="Stretch" Width="600">
+            <Canvas Height="83" Margin="212,0,212,0" HorizontalAlignment="Center" Width="600">
                 <Button x:Name="btnIncreaseRestTime" Content="+" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Click="BtnIncreaseRestTime_Click" FontFamily="Arial Black" Width="45" Height="45" Canvas.Left="175" Canvas.Top="25" FontSize="24" FontWeight="Bold">
                 </Button>
                 <TextBlock x:Name="restTime" Text="00:00" TextWrapping="Wrap" FontSize="46" FontWeight="Bold" FontFamily="Segoe UI" Foreground="#FFD01D1D" SelectionHighlightColor="{x:Null}" Height="50" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Canvas.Left="241" Canvas.Top="13" />
