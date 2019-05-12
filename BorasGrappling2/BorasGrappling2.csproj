@@ -106,10 +106,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="BorasGrappling2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\bgrapp.jpg" />
+    <Content Include="Assets\atos2.jpg" />
     <Content Include="Assets\bgrapp.png" />
     <Content Include="Assets\startbell.wav" />
     <Content Include="Properties\Default.rd.xml" />

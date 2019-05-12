@@ -1,30 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace BorasGrappling2
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
-        private DispatcherTimer timer;
+        private readonly DispatcherTimer timer;
         private int secondsLeft;
         private int secondsRestLeft;
         private int minutesLeft;
@@ -35,16 +19,16 @@ namespace BorasGrappling2
         private float volume = 0.9f;
         private int secondsRestDefault;
 
+
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 1);
+
+            timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 1)};
             timer.Tick += timer_Tick;
 
-            // time
             secondsLeft = 0;
             minutesLeft = 5;
             minutesRestLeft = 0;
@@ -66,14 +50,11 @@ namespace BorasGrappling2
                     PlaySoundAsync("startbell.wav"); // play end of round
                     play = false;
                 }
-                // reset everything
-                //timer.Stop();
-                //btnIncreaseTime.IsEnabled = true;
-                //btnDecreaseTime.IsEnabled = true;
+
                 if (secondsRestLeft == 0 && minutesRestLeft == 0)
                 {
                     // add round 
-                    var nextRound = 1 + Int32.Parse(roundCounter.Text);
+                    var nextRound = 1 + int.Parse(roundCounter.Text);
                     roundCounter.Text = nextRound.ToString();
 
                     secondsRestLeft = secondsRestDefault;
@@ -131,7 +112,6 @@ namespace BorasGrappling2
             if (secondsLeft >= 30)
             {
                 btnDecreaseTime.IsEnabled = true;
-                return;
             }
         }
 
@@ -165,13 +145,12 @@ namespace BorasGrappling2
             btnIncreaseRestTime.IsEnabled = false;
             btnDecreaseRestTime.IsEnabled = false;
 
-            // Do this only if there is timeleft and start is displayed!
-            if (btnStart.Content.ToString() == "START" && (secondsLeft != 0 || minutesLeft != 0))
-            {
-                // Start round first time
-                PlaySoundAsync("startbell.wav");
+            var startBtnText = btnStart.Content?.ToString();
 
-                //timeLeft.Text = FormatTime(minutesLeft, secondsLeft);
+            // Do this only if there is timeleft and start is displayed!
+            if (startBtnText == "START" && (secondsLeft != 0 || minutesLeft != 0))
+            {
+                PlaySoundAsync("startbell.wav");
 
                 secondsDefault = secondsLeft;
                 minutesDefault = minutesLeft;
@@ -179,12 +158,12 @@ namespace BorasGrappling2
                 timer.Start();
                 btnStart.Content = "PAUSE";
 
-            } else if (btnStart.Content.ToString() == "PAUSE")
+            } else if (startBtnText == "PAUSE")
             {
                 timer.Stop();
                 btnStart.Content = "CONTINUE";
 
-            } else if (btnStart.Content.ToString() == "CONTINUE")
+            } else if (startBtnText == "CONTINUE")
             {
                 timer.Start();
                 btnStart.Content = "PAUSE";
@@ -192,7 +171,7 @@ namespace BorasGrappling2
 
         }
 
-        private string FormatTime(int minutes, int seconds)
+        private static string FormatTime(int minutes, int seconds)
         {
             string minStr = minutes.ToString();
             string secStr = seconds.ToString();
@@ -212,7 +191,7 @@ namespace BorasGrappling2
 
         private void BtnIncreaseRestTime_Click(object sender, RoutedEventArgs e)
         {
-            if (secondsRestLeft == 60)
+            if (secondsRestLeft == 50)
             {
                 minutesRestLeft += 1;
                 secondsRestLeft = 0;
@@ -271,7 +250,6 @@ namespace BorasGrappling2
             timer.Stop();
             btnStart.Content = "START";
 
-            // time
             secondsLeft = 0;
             minutesLeft = 5;
             minutesRestLeft = 0;
@@ -289,34 +267,15 @@ namespace BorasGrappling2
 
         private async void PlaySoundAsync(string soundfile)
         {
-            MediaElement mysong = new MediaElement();
+            var mediaElement = new MediaElement();
 
-
-            Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            Windows.Storage.StorageFile file = await folder.GetFileAsync(soundfile);
+            var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            var file = await folder.GetFileAsync(soundfile);
             var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-            mysong.SetSource(stream, file.ContentType);
-            mysong.Volume = volume;
-            mysong.Play();
+
+            mediaElement.SetSource(stream, file.ContentType);
+            mediaElement.Volume = volume;
+            mediaElement.Play();
         }
-
-        //private void VolumeDown_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if(volume > 0.1f)
-        //    {
-        //        volume = volume - 0.1f;
-        //        volumeBox.Text = $"volume: {volume}";
-        //    }
-
-        //}
-
-        //private void VolumeUp_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (volume < 0.9f)
-        //    {
-        //        volume = volume + 0.1f;
-        //        volumeBox.Text = $"volume: {volume}";
-        //    }
-        //}
     }
 }
